@@ -35,7 +35,7 @@
             model_database=model.database|string,
             model_schema=model.schema|string,
             model_materialized=model.config.materialized|string,
-            model_cluster_key=tojson(model.config.cluster_by),
+            model_cluster_key=tojson(model.config.cluster_by|replace('\"', "'")),
             model_fqn=model.fqn
         ) -%}
     {% endif %}
