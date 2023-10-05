@@ -35,8 +35,8 @@
             model_database=model.database|string,
             model_schema=model.schema|string,
             model_materialized=model.config.materialized|string,
-            model_cluster_key=(model.config.cluster_by|string)|replace("'", '\\"'),
-            model_fqn=tojson(model.fqn)
+            model_fqn=tojson(model.fqn),
+            model_fqn_test=model.fqn
         ) -%}
     {% endif %}
 
