@@ -37,7 +37,7 @@
 
         {%- endif -%}
 
-        {%- set cluster_by = cluster_by.split(",") | map('trim') -%}
+        {%- set cluster_by = cluster_by.split(",") | map('trim') | list -%}
         
         {%- do query_tag.update(
             is_incremental=is_incremental(),
