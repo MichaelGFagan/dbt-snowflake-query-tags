@@ -38,6 +38,8 @@
         {%- endif -%}
 
         {%- set cluster_by = cluster_by.split(",") | map('trim') | list -%}
+
+        {%- set cluster_by_test = brute_force_cluster_list(model.config.cluster_by) %}
         
         {%- do query_tag.update(
             is_incremental=is_incremental(),
