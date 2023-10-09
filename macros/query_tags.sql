@@ -28,6 +28,18 @@
 
     {# We have to bring is_incremental through here because its not available in the comment context #}
     {% if model.resource_type == 'model' %}
+
+        {%- set cluster_by = model.config.cluster_by | `string -%}
+
+        {%- if ',' in cluster_by -%}
+
+            {%- set cluster_by = cluster_by | replace('[', '') | replace(']', '') | replace("'", '') -%}
+            {%- set cluster_by = cluster_by[2:] -%}
+            {%- set cluster_by = cluster_by[:-2] -%}
+
+        {%- endif -%}
+
+        {%- set cluster_by = cluster_by.split(", ") -%}
         
         {%- do query_tag.update(
             is_incremental=is_incremental(),
@@ -36,7 +48,7 @@
             model_database=model.database|string,
             model_schema=model.schema|string,
             model_materialized=model.config.materialized|string,
-            model_cluster_key=model.config.cluster_by,
+            model_cluster_key=,
             model_fqn=model.fqn
         ) -%}
     {% endif %}
