@@ -29,7 +29,7 @@
     {# We have to bring is_incremental through here because its not available in the comment context #}
     {% if model.resource_type == 'model' %}
 
-        {%- set cluster_by = model.config.cluster_by | `string -%}
+        {%- set cluster_by = model.config.cluster_by | string -%}
 
         {%- if ',' in cluster_by -%}
 
