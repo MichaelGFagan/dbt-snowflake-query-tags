@@ -28,7 +28,7 @@
 
     {# We have to bring is_incremental through here because its not available in the comment context #}
     {% if model.resource_type == 'model' %}
-        {%- set cluster_by = brute_force_cluster_list(model.config.cluster_by|string) %}
+        {# {%- set cluster_by = brute_force_cluster_list(model.config.cluster_by|string) %} #}
         {%- do query_tag.update(
             is_incremental=is_incremental(),
             model=model.name,
@@ -36,7 +36,8 @@
             model_database=model.database|string,
             model_schema=model.schema|string,
             model_materialized=model.config.materialized|string,
-            model_cluster_key=cluster_by,
+            model_cluster_key=model.config.cluster_by,
+            model_cluster_key=model.config.cluster_by|string,
             model_fqn=model.fqn
         ) -%}
     {% endif %}
