@@ -1,6 +1,6 @@
 {% macro brute_force_cluster_list(cluster_by) %}
 
-    {{ set cluster_by = cluster_by | string }}
+    {% set cluster_by = cluster_by | string %}
 
     {% if ',' in cluster_by %}
 
