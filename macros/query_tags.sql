@@ -31,11 +31,9 @@
 
         {%- set cluster_by = model.config.cluster_by | string -%}
 
-        {%- if ',' in cluster_by -%}
+        {%- if '[' in cluster_by -%}
 
             {%- set cluster_by = cluster_by | replace('[', '') | replace(']', '') | replace("'", '') -%}
-            {%- set cluster_by = cluster_by[2:] -%}
-            {%- set cluster_by = cluster_by[:-2] -%}
 
         {%- endif -%}
 
